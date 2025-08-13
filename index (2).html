@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat the Market - Stock Portfolio Tracker</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <header class="header">
+        <div class="logo">
+            <span class="main-logo">BEAT THE MARKET</span>
+            <span class="subtitle">STOCK TRACKER</span>
+        </div>
+        <nav>
+            <a href="#dashboard" class="nav-link">DASHBOARD</a>
+            <a href="#portfolio" class="nav-link">PORTFOLIO</a>
+            <a href="#compare" class="nav-link">COMPARE</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="dashboard" class="section">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn red"></span>
+                        <span class="btn yellow"></span>
+                        <span class="btn green"></span>
+                    </div>
+                    <span class="terminal-title">STOCK TRACK TERMINAL v2.1.0</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">stocktrack@portfolio:~$</span>
+                        <span class="command">initiate_portfolio_analysis</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Connecting to market data streams...</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output success">[SUCCESS] Alpha Vantage API connected</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Ready for portfolio comparison</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="data-panel">
+                <h2 class="panel-title">PORTFOLIO DATA INPUT</h2>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="portfolio-date">DATE</label>
+                        <input type="date" id="portfolio-date" class="stock-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="portfolio-value">VALUE ($)</label>
+                        <input type="number" id="portfolio-value" class="stock-input" placeholder="10000.00">
+                    </div>
+                    <button id="add-data" class="stock-btn primary">ADD DATA POINT</button>
+                </div>
+                
+                <div class="data-table-container">
+                    <table id="portfolio-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>VALUE</th>
+                                <th>% CHANGE</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="compare" class="section">
+            <div class="comparison-panel">
+                <h2 class="panel-title">MARKET COMPARISON</h2>
+                
+                <div class="index-selector">
+                    <h3>SELECT INDICES TO COMPARE</h3>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="SPY" checked>
+                            <span class="checkmark"></span>
+                            S&P 500 (SPY)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="QQQ">
+                            <span class="checkmark"></span>
+                            Nasdaq (QQQ)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="DIA">
+                            <span class="checkmark"></span>
+                            Dow Jones (DIA)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="VIX">
+                            <span class="checkmark"></span>
+                            VIX
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="IWM">
+                            <span class="checkmark"></span>
+                            Russell 2000 (IWM)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="performance-chart"></canvas>
+                </div>
+
+                <div class="chart-controls">
+                    <button id="update-chart" class="stock-btn secondary">UPDATE CHART</button>
+                    <button id="export-chart" class="stock-btn success">EXPORT PNG</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value" id="total-return">+0.00%</div>
+                <div class="stat-label">TOTAL RETURN</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value" id="vs-sp500">+0.00%</div>
+                <div class="stat-label">VS S&P 500</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="data-points">0</div>
+                <div class="stat-label">DATA POINTS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value" id="last-update">--:--</div>
+                <div class="stat-label">LAST UPDATE</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <span>Beat the Market v1.0.0 | Stock Portfolio Tracker</span>
+            <span>Powered by Alpha Vantage API</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
